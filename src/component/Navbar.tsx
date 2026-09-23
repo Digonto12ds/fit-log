@@ -16,7 +16,7 @@ const Navbar = () => {
             FITLOGO
           </p>
         </div>
-        <div className="flex items-center gap-2">
+        <div className="flex items-center gap-4">
           <Link className={`text-sm font-semibold  ${pathname === '/'? 'text-[#ccff00]' : ''}`} href="/">Workout</Link>
           <Link className={`text-sm font-semibold ${pathname === '/'? 'text-[#ccff00]' : ''}`}  href="/">My Plan</Link>
         </div>
