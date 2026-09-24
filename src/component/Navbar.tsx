@@ -1,12 +1,14 @@
 'use client'
-import React from "react";
+import React, { useContext }from "react";
 import logo from "@/assets/logo.png";
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { FitLogContext } from "@/context/FitLogProvider";
 
 const Navbar = () => {
     const pathname = usePathname();
+    const {plan , saved } = useContext(FitLogContext);
   return (
     <nav className="boborder-b border-zinc-800 bg-[#0d0f12]">
       <div className="container mx-auto flex items-center justify-between px-4 py-4">
@@ -24,14 +26,14 @@ const Navbar = () => {
             <Link className="text-sm font-semibold"
             href="/"
           >
-            Plan <span>0</span>
+            Plan <span>{plan.length}</span>
           </Link>
 
           {/* Saved */}
           <Link className="text-sm font-semibold"
             href="/"
           >
-            Saved <span>0</span>
+            Saved <span>{saved.length}</span>
           </Link>
         </div>
       </div>
