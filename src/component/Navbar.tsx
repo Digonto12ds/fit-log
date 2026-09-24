@@ -20,18 +20,18 @@ const Navbar = () => {
         </div>
         <div className="flex items-center gap-4">
           <Link className={`text-sm font-semibold  ${pathname === '/'? 'text-[#ccff00]' : ''}`} href="/">Workout</Link>
-          <Link className={`text-sm font-semibold ${pathname === '/'? 'text-[#ccff00]' : ''}`}  href="/">My Plan</Link>
+          <Link className={`text-sm font-semibold ${pathname === '/my-plan'? 'text-[#ccff00]' : ''}`}  href="/my-plan">My Plan</Link>
         </div>
         <div className="flex items-center gap-3">
             <Link className="text-sm font-semibold"
-            href="/"
+            href="/my-plan?tab=plan"
           >
             Plan <span>{plan.length}</span>
           </Link>
 
           {/* Saved */}
           <Link className="text-sm font-semibold"
-            href="/"
+            href="/my-plan?tab=saved"
           >
             Saved <span>{saved.length}</span>
           </Link>
