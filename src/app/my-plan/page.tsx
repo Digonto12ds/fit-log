@@ -122,10 +122,10 @@ const MyPlanPage = () => {
         {/* tab + sort */}
         <div className="mb-8 flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
           {/* tab */}
-          <div className="flex w-fit rounded-full border border-zinc-800 bg-[#15181c] p-1">
+          <div className="flex  w-fit rounded-full border border-zinc-800 bg-[#15181c] p-1">
             <Link
               href="/my-plan?tab=plan"
-              className={`rounded-full px-5 py-2. text-sm font-bold transition ${activeTab === "plan" ? "bg-[#ccff00]" : "text-zinc-400 hover:text-white"}`}
+              className={`flex items-center rounded-full px-5 py-2. text-sm font-bold transition ${activeTab === "plan" ? "bg-[#ccff00]" : "text-zinc-400 hover:text-white"}`}
             >{`Today's Plan`}</Link>
 
             <Link
