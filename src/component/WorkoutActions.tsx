@@ -7,11 +7,20 @@ import { toast } from "react-toastify";
 const WorkoutActions = ({ workout }: { workout: Workout }) => {
   const { plan, setPlan, saved, setSaved } = useContext(FitLogContext);
 
+  const alreadyAdded = plan.some(
+    (item) => item.id === workout.id
+  );
+  const planFull = plan.length === 5;
+
   const handleAddToPlan = () => {
-    const alreadyAdded = plan.some((item) => item.id === workout.id);
     if(alreadyAdded){
         toast.error(`${workout.name} is already in today's plan`);
         return;
+    }
+
+    if(planFull){
+      toast.error("Today's plan is full. Maximum 5 workouts allowed.");
+      return ;
     }
 
     setPlan([...plan, workout]);
@@ -37,9 +46,16 @@ const WorkoutActions = ({ workout }: { workout: Workout }) => {
     <div className="mt-10 flex flex-col gap-3 sm:flex-row">
       <button
         onClick={handleAddToPlan}
-        className="flex flex-1 items-center justify-center gap-2 rounded-full bg-[#ccff00] px-6 py-3 font-black text-black transition hover:bg-[#d9ff4d]"
+        disabled = {alreadyAdded || planFull}
+        className={` flex flex-1 items-center justify-center gap-2 rounded-full px-6 py-3 font-black text-black transition ${
+          alreadyAdded || planFull ? "cursor-not-allowed bg-zinc-700 text-zinc-400" : "bg-[#ccff00] text-black hover:bg-[#d9ff4d]"
+        }`}
       >
-       {` Add to today's plan`}
+        {
+          alreadyAdded ? "✓ Added to today's plan" 
+          : planFull ? "Plan Full (5/5)" : "Add to today's plan"
+        }
+
       </button>
 
       <button

@@ -18,11 +18,24 @@ const MyPlanPage = () => {
 
   const [completedWorkouts, setCompletedWorkouts] = useState<number[]>([]);
   const [sortBy, setSortBy] = useState<SortOption>("duration");
+  const [searchText, setSearchText] = useState("");
 
   const currentList = activeTab === "plan" ? plan : saved;
 
+  const filteredList = currentList.filter((workout) => {
+    const searchValue = searchText.toLowerCase();
+    const workoutName = workout.name.toLowerCase();
+
+    const tags = workout.muscleGroups.join(" ").toLowerCase();
+
+    return (
+      workoutName.includes(searchValue) || tags.includes(searchValue)
+    );
+
+  });
+
   // sort
-  const sortedList = [...currentList].sort((var1, var2) => {
+  const sortedList = [...filteredList].sort((var1, var2) => {
     if (sortBy === "duration") {
       return var1.duration - var2.duration;
     }
@@ -140,6 +153,17 @@ const MyPlanPage = () => {
             </Link>
           </div>
 
+          {/* search */}
+          <div className="relative flex-1">
+              <input
+              type="text"
+              value = {searchText}
+              onChange={(event) =>setSearchText(event.target.value)}
+              placeholder="Search workout or muscle..."
+              className="w-full rounded-full border border-zinc-700 bg-[#15181c] px-5 py-3 text-sm text-white outline-none placeholder:text-zinc-500 focus:border-[#ccff00]"
+              />
+          </div>
+
           {/* sort */}
           <div className="relative">
             <select
@@ -249,8 +273,13 @@ const MyPlanPage = () => {
           })}
         </div>
 
-        {/* Empty State */}
+        {/* No search result */}
+          {currentList.length > 0 && filteredList.length === 0 && (
+            <div className="mt-6 rounded-2xl border border-dashed border-zinc-800 px-6 py-16 text-center"> <p className="text-sm font-black tracking-[0.2em] text-[#ccff00]"> NO WORKOUTS FOUND </p> <p className="mt-3 text-sm text-zinc-500"> Try another workout name or muscle group. </p> </div>
+          )}
 
+
+        {/* Empty State */}
         {currentList.length === 0 && (
           <div className="flex flex-col items-center justify-center rounded-2xl border border-dashed border-zinc-800 px-6 py-20 text-center">
             <p className="text-sm font-black tracking-[0.2em] text-[#ccff00]">
