@@ -21,7 +21,7 @@ const Hero = () => {
           <p className="mb-4 text-sm font-bold text-[11px] text-[#ccff00]">
             WORKOUT LIBRARY
           </p>
-          <h1 className="font-[var(--font-oswald)] text-5xl font-bold uppercase leading-tight md:text-6xl lg:text-7xl">
+          <h1 className="font-var(--font-oswald) text-5xl font-bold uppercase leading-tight md:text-6xl lg:text-7xl">
             TRAIN WITH INTENT.
             <br />
             LOG EVERY SET.

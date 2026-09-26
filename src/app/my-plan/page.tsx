@@ -2,7 +2,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { useSearchParams } from "next/navigation";
-import React, { useContext, useState } from "react";
+import React, { Suspense, useContext, useState } from "react";
 import { toast } from "react-toastify";
 import { TiTick } from "react-icons/ti";
 import { FitLogContext } from "@/context/FitLogProvider";
@@ -10,7 +10,7 @@ import { FitLogContext } from "@/context/FitLogProvider";
 type Tab = "plan" | "saved";
 type SortOption = "duration" | "calories" | "rating";
 
-const MyPlanPage = () => {
+const MyPlanContent = () => {
   const { plan, setPlan, saved, setSaved } = useContext(FitLogContext);
   const searchParams = useSearchParams();
   const tab = searchParams.get("tab");
@@ -304,5 +304,13 @@ const MyPlanPage = () => {
     </main>
   );
 };
+
+const MyPlanPage = () => {
+  return (
+    <Suspense fallback = {null}>
+      <MyPlanContent />
+    </Suspense>
+  )
+}
 
 export default MyPlanPage;
