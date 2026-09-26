@@ -1,6 +1,7 @@
 "use client";
 import Image from "next/image";
 import himg from "@/assets/banner.png";
+import { FiChevronsDown } from "react-icons/fi";
 
 const Hero = () => {
   const handleBrowseWorkouts = () => {
@@ -33,7 +34,7 @@ const Hero = () => {
           <button
             onClick={handleBrowseWorkouts}
             className="mt-8 inline-flex items-center gap-3 rounded-full bg-[#ccff00] px-6 py-3 text-sm font-black uppercase tracking-wide text-black transition hover:bg-[#d9ff4d]"
-          >
+          > <FiChevronsDown  size={20}/>
             Browse Workouts
           </button>
         </div>
